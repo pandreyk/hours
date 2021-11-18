@@ -1,11 +1,11 @@
 import styled from '@emotion/styled'
 import { colors } from 'config/themes'
 
-type ImageProps = {
+type ButtonProps = {
   inverted: boolean
 }
 
-export const StyledButton = styled.button<ImageProps>`
+export const StyledButton = styled.button<ButtonProps>`
   position: relative;
   padding: 0.375rem 1rem;
   text-decoration: none;

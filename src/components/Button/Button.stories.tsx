@@ -1,5 +1,11 @@
-import React from 'react'
+import React, { ReactNode } from 'react'
+import { Story } from '@storybook/react'
 import { Button } from './Button'
+
+interface IButton {
+  children: string | ReactNode
+  inverted?: boolean
+}
 
 export default {
   title: 'Components/Button',
@@ -14,11 +20,11 @@ export default {
   },
 }
 
-const Template = (args) => <Button {...args} />
+const Template: Story<IButton> = (args) => <Button {...args} />
 
 export const Default = Template.bind({})
 
 Default.args = {
-  children: 'button',
   inverted: false,
+  children: 'Button',
 }

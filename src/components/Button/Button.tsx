@@ -2,10 +2,10 @@ import React, { ReactNode } from 'react'
 import { StyledButton } from './styles'
 
 interface IButton {
-  children: string | ReactNode;
-  inverted?: boolean;
+  children: string | ReactNode
+  inverted?: boolean
 }
 
-export const Button: React.FC<IButton> = ({ children, inverted }) => {
+export const Button: React.FC<IButton> = ({ children, inverted = false }) => {
   return <StyledButton inverted={inverted}>{children}</StyledButton>
 }

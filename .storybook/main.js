@@ -2,7 +2,7 @@ const path = require('path')
 const resolve = (dir) => path.resolve(__dirname, dir)
 
 module.exports = {
-  stories: ['../src/**/*.stories.js'],
+  stories: ['../src/**/*.stories.tsx', '../src/**/*.stories.ts'],
   addons: [
     '@storybook/addon-docs',
     '@storybook/addon-essentials',

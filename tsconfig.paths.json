@@ -3,12 +3,11 @@
     "baseUrl": "./src",
     "paths": {
       "assets/*": ["./src/assets/*"],
-      "components/*": ["./src/components/*"],
-      "connectors/*": ["./src/connectors/*"],
+      "generic/*": ["./src/shared/generic/*"],
+      "containers/*": ["./src/shared/containers/*"],
+      "layouts/*": ["./src/shared/layouts/*"],
       "config/*": ["./src/config/*"],
-      "containers/*": ["./src/containers/*"],
       "contexts/*": ["./src/contexts/*"],
-      "documents/*": ["./src/documents/*"],
       "helpers/*": ["./src/helpers/*"],
       "hooks/*": ["./src/hooks/*"],
       "i18n/*": ["./src/i18n/*"],
@@ -16,8 +15,9 @@
       "libs/*": ["./src/libs/*"],
       "pages/*": ["./src/pages/*"],
       "styles/*": ["./src/styles/*"],
-      "constants/*": ["./src/constants/*"],
-      "services/*": ["./src/services/*"]
+      "services/*": ["./src/services/*"],
+      "modules/*": ["./src/modules/*"],
+      "types/*": ["./src/types/*"],
     }
   }
 }

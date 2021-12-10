@@ -6,12 +6,11 @@ module.exports = {
   webpack: {
     alias: {
       assets: resolvePath('./src/assets'),
-      components: resolvePath('./src/components'),
-      connectors: resolvePath('./src/connectors'),
+      generic: resolvePath('./src/shared/generic'),
+      containers: resolvePath('./src/shared/containers'),
+      layouts: resolvePath('./src/shared/layouts'),
       config: resolvePath('./src/config'),
-      containers: resolvePath('./src/containers'),
       contexts: resolvePath('./src/contexts'),
-      documents: resolvePath('./src/documents'),
       helpers: resolvePath('./src/helpers'),
       hooks: resolvePath('./src/hooks'),
       i18n: resolvePath('./src/i18n'),
@@ -19,8 +18,9 @@ module.exports = {
       libs: resolvePath('./src/libs'),
       pages: resolvePath('./src/pages'),
       styles: resolvePath('./src/styles'),
-      constants: resolvePath('./src/constants'),
-      services: resolvePath('./src/services')
-    }
-  }
+      services: resolvePath('./src/services'),
+      modules: resolvePath('./src/modules'),
+      types: resolvePath('./src/types'),
+    },
+  },
 }

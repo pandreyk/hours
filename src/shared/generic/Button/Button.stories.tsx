@@ -4,7 +4,7 @@ import { Button } from './Button'
 
 interface IButton {
   children: string | ReactNode
-  inverted?: boolean
+  disabled?: boolean
 }
 
 export default {
@@ -12,7 +12,7 @@ export default {
 
   component: Button,
   argTypes: {
-    inverted: {
+    disabled: {
       control: {
         type: 'boolean',
       },
@@ -25,6 +25,6 @@ const Template: Story<IButton> = (args) => <Button {...args} />
 export const Default = Template.bind({})
 
 Default.args = {
-  inverted: false,
+  disabled: false,
   children: 'Button',
 }

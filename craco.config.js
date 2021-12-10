@@ -9,6 +9,7 @@ module.exports = {
       generic: resolvePath('./src/shared/generic'),
       containers: resolvePath('./src/shared/containers'),
       layouts: resolvePath('./src/shared/layouts'),
+      formikFields: resolvePath('./src/shared/formikFields'),
       config: resolvePath('./src/config'),
       contexts: resolvePath('./src/contexts'),
       helpers: resolvePath('./src/helpers'),

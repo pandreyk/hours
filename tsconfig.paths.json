@@ -1,11 +1,11 @@
 {
   "compilerOptions": {
-    "baseUrl": "./src",
     "paths": {
       "assets/*": ["./src/assets/*"],
       "generic/*": ["./src/shared/generic/*"],
       "containers/*": ["./src/shared/containers/*"],
       "layouts/*": ["./src/shared/layouts/*"],
+      "formikFields/*": ["./src/shared/formikFields/*"],
       "config/*": ["./src/config/*"],
       "contexts/*": ["./src/contexts/*"],
       "helpers/*": ["./src/helpers/*"],

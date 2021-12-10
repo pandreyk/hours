@@ -11,7 +11,7 @@ const App: React.FC = () => {
 
   return (
     <>
-      <Routes localStoreHasJWT={true} authed={true} role={'Admin'} />
+      <Routes localStoreHasJWT={false} authed={false} role={'Admin'} />
     </>
   )
 }

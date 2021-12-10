@@ -1,22 +1,22 @@
-import React, { FC, ForwardedRef, forwardRef } from 'react'
-import { Container, InputField } from './styles'
+import React, { forwardRef, ForwardedRef, InputHTMLAttributes } from 'react'
+import { Container, ErrorMessage, InputField, Label } from './styles'
 
-export interface IInput {
+export interface IInput extends InputHTMLAttributes<HTMLInputElement> {
   ref?: ForwardedRef<HTMLInputElement>
-  value: string
-  placeholder?: string
+  touched?: boolean
+  error?: boolean
+  label?: string
 }
 
-export const Input: FC<IInput> = forwardRef(
-  ({ placeholder, value, ...rest }, ref) => {
+export const Input: React.FC<IInput> = forwardRef(
+  ({ touched, error, label, name, disabled, ...rest }, ref) => {
     return (
       <Container>
-        <InputField
-          ref={ref}
-          value={value}
-          placeholder={placeholder}
-          {...rest}
-        />
+        <Label htmlFor={name} disabled={disabled}>
+          {label}
+        </Label>
+        <InputField ref={ref} disabled={disabled} id={name} {...rest} />
+        {touched && error && <ErrorMessage>{error}</ErrorMessage>}
       </Container>
     )
   },

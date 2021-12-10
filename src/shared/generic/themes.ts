@@ -5,6 +5,7 @@ export const colors = {
   secondaryLight: '#c4bb56',
   white: '#FFFFFF',
   black: '#000000',
+  error: 'red',
   transparent: 'transparent',
 }
 

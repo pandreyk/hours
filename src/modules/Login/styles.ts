@@ -1,21 +1,6 @@
 import styled from '@emotion/styled'
 
-const DivAbsolute = styled.div`
-  position: absolute;
-  top: 0;
-  left: 0;
-  width: 100%;
-  height: 100%;
-`
-
-export const Container = styled.div`
-  position: relative;
-  width: 100vw;
-  height: 100vh;
-  //display: flex;
-  //justify-content: center;
-  //align-items: center;
-`
+export const Container = styled.div``
 
 export const FieldsContainer = styled.div`
   display: flex;
@@ -24,26 +9,18 @@ export const FieldsContainer = styled.div`
   align-items: center;
   z-index: 100;
 
+  > div:first-of-type > span {
+    font-size: 20px;
+  }
+
   > * {
     margin: 1rem 0;
   }
 `
 
-export const BackgroundTop = styled(DivAbsolute)``
-
-export const BackgroundBottom = styled(DivAbsolute)``
-
-export const LogoWrapper = styled.div`
-  position: absolute;
-  bottom: 1rem;
-  left: 1.5rem;
-
-  > img {
-    width: 7rem;
-  }
-`
-
-export const Content = styled(DivAbsolute)`
+export const Content = styled.div`
+  width: 100vw;
+  height: 100vh;
   display: flex;
   justify-content: center;
   align-items: center;

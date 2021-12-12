@@ -1,5 +1,5 @@
 {
-  "plugins": ["react", "prettier"],
+  "plugins": ["react", "prettier", "@typescript-eslint"],
   "extends": [
     "eslint:recommended",
     "plugin:react-hooks/recommended",
@@ -28,7 +28,8 @@
       }
     ],
     "react/jsx-uses-react": "off",
-    "react/react-in-jsx-scope": "off"
+    "react/react-in-jsx-scope": "off",
+    "@typescript-eslint/no-var-requires": 0
   },
   "env": {
     "es6": true,

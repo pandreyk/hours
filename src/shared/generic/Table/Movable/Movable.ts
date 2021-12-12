@@ -78,7 +78,7 @@ export class Movable {
 
   onMouseMove(e: MouseEvent) {
     if (!this.isDown) {
-      this.onChange({
+      return this.onChange({
         node: this.node,
         isDown: this.isDown,
         position: this.position,

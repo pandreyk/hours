@@ -38,26 +38,24 @@ module.exports = {
       {
         test: /\.?js$/,
         exclude: /node_modules/,
-        use: {
-          loader: 'babel-loader',
-          options: {
-            presets: ['@babel/preset-env', '@babel/preset-react'],
-          },
-        },
+        use: ['babel-loader'],
       },
       {
         test: /\.?(ts|tsx)$/,
         exclude: /node_modules/,
-        use: {
-          loader: 'babel-loader',
-          options: {
-            presets: ['@babel/preset-react', '@babel/preset-typescript'],
-          },
-        },
+        use: ['babel-loader'],
       },
       {
-        test: /\.css$/i,
+        test: /\.css$/,
         use: [MiniCssExtractPlugin.loader, 'css-loader'],
+      },
+      {
+        test: /\.(?:ico|gif|png|jpg|jpeg)$/i,
+        type: 'asset/resource',
+      },
+      {
+        test: /\.(woff(2)?|eot|ttf|otf|svg|)$/,
+        type: 'asset/inline',
       },
     ],
   },
@@ -70,7 +68,7 @@ module.exports = {
   ],
   devServer: {
     static: path.join(__dirname, 'dist'),
-    port: 3000,
+    port: 8080,
     open: true,
   },
 }

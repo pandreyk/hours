@@ -7,7 +7,6 @@ const InputField: React.FC<FieldProps> = ({
   form: { touched, errors },
   ...props
 }) => {
-  // field: An object containing onChange, onBlur, name, and value
   const isTouched = getIn(touched, field.name)
   const error = getIn(errors, field.name)
 

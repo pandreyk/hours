@@ -1,5 +1,5 @@
 import styled from '@emotion/styled'
-import { Color, colors, shadows } from '../../themes'
+import { Color, colors, shadows } from 'generic/themes'
 
 interface IPaginationStyle {
   backgroundColor: Color

@@ -2,7 +2,7 @@ import styled from '@emotion/styled'
 
 export const Container = styled.div`
   position: absolute;
-  margin: 1rem;
   cursor: grab;
-  transition: all 0.5s ease;
+  transition-property: left, top, transform;
+  transition-duration: 0.5s;
 `

@@ -1,6 +1,6 @@
 import React from 'react'
-import TriangularArrow from '../TriangularArrow.svg'
 import { ITableHeader, ITableHeaderCell } from '../interfaces'
+import TriangularArrow from '../TriangularArrow.svg'
 import {
   Cell,
   StyledHeader,

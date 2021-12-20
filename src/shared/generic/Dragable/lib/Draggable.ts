@@ -31,8 +31,8 @@ export class Draggable {
   private shiftX: number
   private marginTop: number
   private marginLeft: number
-  private posTop: number
-  private posLeft: number
+  private posY: number
+  private posX: number
 
   private readonly onDragStartEvent: OmitThisParameter<() => void>
   private readonly onMouseDownEvent: OmitThisParameter<(e: MouseEvent) => void>
@@ -69,8 +69,8 @@ export class Draggable {
     this.marginLeft = 0
     this.scrollY = 0
     this.scrollX = 0
-    this.posTop = 0
-    this.posLeft = 0
+    this.posY = Number(this.node.dataset.translateY)
+    this.posX = 0
 
     this.onDragStartEvent = this.onDragStart.bind(this)
     this.onMouseDownEvent = this.onMouseDown.bind(this)
@@ -99,16 +99,6 @@ export class Draggable {
 
     if (!elemBelow?.closest(`.${this.handleClassName}`)) return
 
-    this.shiftX = event.clientX - this.node.getBoundingClientRect().left
-    this.shiftY = event.clientY - this.node.getBoundingClientRect().top
-    const styles = getComputedStyle(this.node)
-    this.marginLeft = Number(styles.marginLeft.split('px')[0])
-    this.marginTop = Number(styles.marginTop.split('px')[0])
-    this.posTop = Number(styles.top.split('px')[0])
-    this.posLeft = Number(styles.left.split('px')[0])
-    this.scrollX = window.scrollX
-    this.scrollY = window.scrollY
-
     this.parentElement = this.node.parentNode as HTMLElement
     this.parentClassName = this.parentElement.classList[0]
     this.parentChildren = this.parentElement.querySelectorAll('div#drag')
@@ -117,10 +107,21 @@ export class Draggable {
       Array.from(this.parentChildren as NodeListOf<HTMLElement>)
     this.draggedIndex = parentChildrenArray.indexOf(this.node as HTMLElement)
 
+    this.shiftX = event.clientX - this.node.getBoundingClientRect().left
+    this.shiftY = event.clientY - this.node.getBoundingClientRect().top
+    const styles = getComputedStyle(this.node)
+    this.marginLeft = Number(styles.marginLeft.split('px')[0])
+    this.marginTop = Number(styles.marginTop.split('px')[0])
+    this.posY = Number(this.node.dataset.translateY)
+    this.scrollX = window.scrollX
+    this.scrollY = window.scrollY
+
     document.body.append(this.node)
     this.node.style.position = 'fixed'
     this.node.style.zIndex = '1000'
     this.node.style.cursor = 'grabbing'
+    this.node.style.top = '0'
+    this.node.style.left = '0'
 
     this.moveAt(event.pageX, event.pageY)
     Draggable.disableScrolling()
@@ -173,22 +174,30 @@ export class Draggable {
       const newPositionIndex = Math.round(containerShiftY / this.dragHeight)
       const newPosition = this.dragHeight * newPositionIndex
       const allItemsHeight = this.dragHeight * droppedChildrenArray.length
-      const newTopPos =
+      const newPosY =
         newPosition > allItemsHeight ? allItemsHeight : newPosition
 
-      dragComponent.style.top =
-        containerShiftY - this.shiftY - this.marginTop + 'px'
-      dragComponent.style.left =
-        containerShiftX - this.shiftX - this.marginLeft + 'px'
+      const oldPosX =
+        containerShiftX -
+        this.shiftX -
+        this.marginLeft -
+        droppedElement.clientWidth / 2
+      const oldPosY = containerShiftY - this.shiftY - this.marginTop
+      dragComponent.style.transform = `translate(${oldPosX}px, ${oldPosY}px)`
+      dragComponent.style.left = `50%`
+      // dragComponent.style.zIndex = '1'
 
       setTimeout(() => {
-        dragComponent.style.top = newTopPos + 'px'
-        dragComponent.style.left = this.posLeft + 'px'
+        this.posY = newPosY
+        dragComponent.dataset.translateY = String(newPosY)
+        dragComponent.style.transform = `translate(-50%, ${newPosY}px)`
       }, 0)
 
       droppedChildrenArray?.forEach((item, index) => {
         if (index >= newPositionIndex) {
-          item.style.top = (index + 1) * this.dragHeight + 'px'
+          const translateY = (index + 1) * this.dragHeight
+          item.style.transform = `translate(-50%, ${translateY}px)`
+          item.dataset.translateY = String(translateY)
         }
       })
 
@@ -197,7 +206,9 @@ export class Draggable {
         parentChildren && Array.from(parentChildren as NodeListOf<HTMLElement>)
 
       parentChildrenArray?.forEach((item, index) => {
-        item.style.top = index * this.dragHeight + 'px'
+        const translateY = index * this.dragHeight
+        item.style.transform = `translate(-50%, ${translateY}px)`
+        item.dataset.translateY = String(translateY)
       })
 
       droppedElement.insertBefore(
@@ -221,14 +232,12 @@ export class Draggable {
         this.parentElement.getBoundingClientRect().left +
         scrollLeft
 
-      dragComponent.style.top =
-        containerShiftY - this.shiftY - this.marginTop + 'px'
-      dragComponent.style.left =
-        containerShiftX - this.shiftX - this.marginLeft + 'px'
-
+      const oldPosX = containerShiftX - this.shiftX - this.marginLeft
+      const oldPosY = containerShiftY - this.shiftY - this.marginTop
+      dragComponent.style.transform = `translate(${oldPosX}px, ${oldPosY}px)`
       setTimeout(() => {
-        dragComponent.style.top = this.posTop + 'px'
-        dragComponent.style.left = this.posLeft + 'px'
+        dragComponent.style.transform = `translate(-50%, ${this.posY}px)`
+        dragComponent.style.left = `50%`
       }, 0)
 
       this.parentElement.insertBefore(
@@ -286,13 +295,12 @@ export class Draggable {
       this.parentElement.getBoundingClientRect().left +
       scrollLeft
 
-    this.node.style.top = containerShiftY - this.shiftY - this.marginTop + 'px'
-    this.node.style.left =
-      containerShiftX - this.shiftX - this.marginLeft + 'px'
+    const oldPosX = containerShiftX - this.shiftX - this.marginLeft
+    const oldPosY = containerShiftY - this.shiftY - this.marginTop
 
+    this.node.style.transform = `translate(${oldPosX}px, ${oldPosY}px)`
     setTimeout(() => {
-      this.node.style.top = this.posTop + 'px'
-      this.node.style.left = this.posLeft + 'px'
+      this.node.style.transform = `translate(${this.posX}px, ${this.posY}px)`
     }, 0)
 
     this.parentElement.insertBefore(
@@ -304,8 +312,9 @@ export class Draggable {
   moveAt = (pageX: number, pageY: number) => {
     const { shiftY, shiftX, marginTop, marginLeft, scrollY, scrollX } = this
 
-    this.node.style.top = pageY - shiftY - marginTop - scrollY + 'px'
-    this.node.style.left = pageX - shiftX - marginLeft - scrollX + 'px'
+    const posX = pageX - shiftX - marginLeft - scrollX
+    const posY = pageY - shiftY - marginTop - scrollY
+    this.node.style.transform = `translate(${posX}px, ${posY}px)`
   }
 
   enterDroppable = (elem: HTMLElement) => {

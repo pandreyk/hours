@@ -16,7 +16,7 @@ const breakpoints = {
 }
 
 interface IPagination {
-  countPages: number
+  countPages: number | null
   selectedPage: number
   selectPage: (i: number) => void
 }

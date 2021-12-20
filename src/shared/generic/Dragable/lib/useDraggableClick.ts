@@ -1,6 +1,6 @@
 import React from 'react'
 
-interface IUseDraggableClick {
+interface UseDraggableClick {
   itemSelector: string
   dragHeight: number
   firstColumn: string
@@ -13,7 +13,7 @@ export const useDraggableClick = ({
   dragHeight,
   firstColumn,
   secondColumn,
-}: IUseDraggableClick) => {
+}: UseDraggableClick) => {
   return (e: React.MouseEvent<HTMLElement>) => {
     const target = e.target as HTMLElement
     const component = target.closest(`div${itemSelector}`) as HTMLElement
@@ -30,21 +30,25 @@ export const useDraggableClick = ({
     if (!component || !dragComponent || !draggedContainer || !droppedContainer)
       return
 
-    dragComponent.dataset.dropped = draggedContainer?.className?.split(' ')[0]
-
     const droppedChildren = droppedContainer.querySelectorAll('div#drag')
     const droppedChildrenArray =
       droppedChildren && Array.from(droppedChildren as NodeListOf<HTMLElement>)
 
-    dragComponent.style.top = droppedChildrenArray.length * dragHeight + 'px'
+    const translateY = droppedChildrenArray.length * dragHeight
+    dragComponent.style.transform = `translate(-50%, ${translateY}px)`
+    dragComponent.dataset.translateY = String(translateY)
+    dragComponent.dataset.dropped = draggedContainer?.classList[0]
 
     const draggedChildren = draggedContainer.querySelectorAll('div#drag')
     const draggedChildrenArray =
       draggedChildren && Array.from(draggedChildren as NodeListOf<HTMLElement>)
 
     draggedChildrenArray?.forEach((item, index) => {
-      if (index > draggedChildrenArray.indexOf(dragComponent as HTMLElement))
-        item.style.top = (index - 1) * dragHeight + 'px'
+      if (index > draggedChildrenArray.indexOf(dragComponent as HTMLElement)) {
+        const translateY = (index - 1) * dragHeight
+        item.style.transform = `translate(-50%, ${translateY}px)`
+        item.dataset.translateY = String(translateY)
+      }
     })
 
     droppedContainer.append(dragComponent)

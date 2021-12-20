@@ -14,7 +14,7 @@ export class Movable {
 
   private readonly onMouseDownEvent: OmitThisParameter<(e: MouseEvent) => void>
   private readonly onMouseUpEvent: OmitThisParameter<() => void>
-  private readonly onMouseMoveEvent: OmitThisParameter<(e: MouseEvent) => any>
+  private readonly onMouseMoveEvent: OmitThisParameter<(e: MouseEvent) => void>
 
   constructor(
     sliderRoot: HTMLDivElement,

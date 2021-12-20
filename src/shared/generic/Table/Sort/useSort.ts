@@ -1,16 +1,16 @@
 import { useState } from 'react'
 
-type order = 'asc' | 'desc'
-type event = {
+type Order = 'asc' | 'desc'
+type Event = {
   target: { dataset: { fieldname: string } }
 }
-type result = [string, order, (e: event) => void]
+type Result = [string, Order, (e: Event) => void]
 
-export const useSort = (initialSortedBy: string, order?: order): result => {
+export const useSort = (initialSortedBy: string, order?: Order): Result => {
   const [sortedBy, setSortedBy] = useState<string>(initialSortedBy)
-  const [orderType, setOrderType] = useState<order>(order || 'asc')
+  const [orderType, setOrderType] = useState<Order>(order || 'asc')
 
-  const changeSort = (e: event) => {
+  const changeSort = (e: Event) => {
     const dataset = { ...e.target.dataset }
     const { fieldname } = dataset
 
@@ -20,7 +20,7 @@ export const useSort = (initialSortedBy: string, order?: order): result => {
       setSortedBy(fieldname)
       setOrderType('asc')
     } else {
-      setOrderType((prev: order) => (prev === 'asc' ? 'desc' : 'asc'))
+      setOrderType((prev) => (prev === 'asc' ? 'desc' : 'asc'))
     }
   }
 

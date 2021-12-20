@@ -1,6 +1,6 @@
 import React, { ReactNode } from 'react'
-import { Row, Body, Cell, CellContainer, CellSpan } from './styles'
 import { ITableBody, ITableBodyCell, ITableBodyRow } from '../interfaces'
+import { Row, Body, Cell, CellContainer, CellSpan } from './styles'
 
 const BodyComponent = ({ children, ...rest }: ITableBody) => {
   return (

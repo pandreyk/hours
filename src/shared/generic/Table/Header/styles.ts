@@ -1,5 +1,5 @@
 import styled from '@emotion/styled'
-import { colors } from '../../themes'
+import { colors } from 'generic/themes'
 
 interface ITableHeaderStyle {
   headerSticky?: boolean
@@ -19,7 +19,7 @@ export const StyledHeader = styled.thead<ITableHeaderStyle>`
 
 export const Row = styled.tr<ITableHeaderStyle>``
 
-export const Cell = styled.th<ITableHeaderStyle>`
+export const Cell = styled.td<ITableHeaderStyle>`
   padding: 0.375rem 1rem;
   border-left: 1px solid ${colors.primary};
   border-right: 1px solid ${colors.primary};
@@ -31,7 +31,6 @@ export const Cell = styled.th<ITableHeaderStyle>`
   text-decoration: none;
   line-height: 1.5rem;
   font-weight: lighter;
-
   :first-of-type {
     border-left: none;
   }

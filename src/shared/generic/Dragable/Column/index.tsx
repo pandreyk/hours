@@ -13,13 +13,17 @@ export const Column: React.FC<IDraggableColumn> = ({
   ...rest
 }) => {
   useEffect(() => {
-    const container = document.querySelector(`.${className}`)
+    const container = document.querySelector(`.${className}`) as HTMLElement
     const children = container?.querySelectorAll('div#drag')
     const childrenArray =
       children && Array.from(children as NodeListOf<HTMLElement>)
 
     childrenArray?.forEach((item, index) => {
-      item.style.top = index * dragHeight + 'px'
+      const translateY = index * dragHeight
+
+      item.style.transform = `translate(-50%, ${translateY}px)`
+      item.style.left = `50%`
+      item.dataset.translateY = String(translateY)
     })
   }, [])
 

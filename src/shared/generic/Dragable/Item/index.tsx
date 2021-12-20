@@ -10,6 +10,7 @@ interface IDraggableItem {
   dragHeight?: number
   onHover?: Hover
   onHoverOut?: HoverOut
+  style?: React.CSSProperties
 }
 
 export const Item: React.FC<IDraggableItem> = ({
@@ -22,6 +23,7 @@ export const Item: React.FC<IDraggableItem> = ({
   onHover = () => {},
   // eslint-disable-next-line @typescript-eslint/no-empty-function
   onHoverOut = () => {},
+  style,
 }) => {
   const [refDraggable] = useDraggable({
     onDrop,
@@ -32,7 +34,12 @@ export const Item: React.FC<IDraggableItem> = ({
   })
 
   return (
-    <Container id="drag" data-dropped={droppedClassName} ref={refDraggable}>
+    <Container
+      id="drag"
+      data-dropped={droppedClassName}
+      style={style}
+      ref={refDraggable}
+    >
       {children}
     </Container>
   )

@@ -9,8 +9,6 @@ module.exports = {
     path: path.resolve(__dirname, 'dist'),
     filename: 'main.js',
   },
-  mode: 'development',
-  devtool: 'inline-source-map',
   resolve: {
     extensions: ['.js', '.jsx', '.ts', '.tsx'],
     alias: {
@@ -66,10 +64,4 @@ module.exports = {
     new MiniCssExtractPlugin(),
     new ESLintPlugin(),
   ],
-  devServer: {
-    static: path.join(__dirname, 'dist'),
-    port: 8080,
-    open: true,
-    historyApiFallback: true,
-  },
 }

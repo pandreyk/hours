@@ -1,16 +1,16 @@
 import React from 'react'
-import { Switch, Route, useLocation } from 'react-router-dom'
+import { Switch, Route } from 'react-router-dom'
 import { AdminRoutesList } from 'pages/types'
+import AssignmentPage from './Assignment'
 import HomePage from './Home'
 
 const AdminRoutes: React.FC = () => {
-  const { pathname } = useLocation()
-
-  const { home } = AdminRoutesList
+  const { home, assignment } = AdminRoutesList
 
   return (
     <Switch>
       <Route exact path={home} component={HomePage} />
+      <Route exact path={assignment} component={AssignmentPage} />
 
       <Route path="/*" render={() => <span>Error</span>} />
     </Switch>

@@ -1,13 +1,13 @@
 import React from 'react'
 import { Route, Redirect } from 'react-router-dom'
 
-interface IPrivateRouteProps {
+interface PrivateRouteProps {
   component: React.ElementType
   localStoreHasJWT: boolean
   authed: boolean
 }
 
-export const PrivateRoute: React.FC<IPrivateRouteProps> = ({
+export const PrivateRoute: React.FC<PrivateRouteProps> = ({
   component: Component,
   authed,
   localStoreHasJWT,

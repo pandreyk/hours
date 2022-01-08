@@ -1,11 +1,11 @@
 import React from 'react'
+import { useTranslation } from 'react-i18next'
 import { Formik, Form, Field, FormikProps } from 'formik'
 import * as Yup from 'yup'
-import { useTranslation } from 'react-i18next'
-import { Button } from 'generic/Button'
-import { Container, FieldsContainer, Content } from './styles'
 import InputField from 'formikFields/Input'
+import { Button } from 'generic/Button'
 import { Title } from 'generic/Title'
+import { Container, FieldsContainer, Content } from './styles'
 
 interface ILoginForm {
   Username: string

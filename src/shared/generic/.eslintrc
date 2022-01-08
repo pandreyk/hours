@@ -1,0 +1,24 @@
+{
+  "rules": {
+    "no-restricted-imports": [
+      "error",
+      {
+        "paths": ["formik"],
+        "patterns": [
+          {
+            "group": ["services/*"], // example
+            "message": "No services"
+          },
+          {
+            "group": ["icons/*"],
+            "message": "Don't use external imports"
+          },
+          {
+            "group": ["generic/*"],
+            "message": "Use relative paths"
+          }
+        ]
+      }
+    ]
+  }
+}

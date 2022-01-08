@@ -1,5 +1,5 @@
 {
-  "plugins": ["react", "prettier", "@typescript-eslint"],
+  "plugins": ["react", "prettier", "@typescript-eslint", "import-helpers", "import"],
   "extends": [
     "eslint:recommended",
     "plugin:react-hooks/recommended",
@@ -7,6 +7,8 @@
     "plugin:@typescript-eslint/eslint-recommended",
     "plugin:@typescript-eslint/recommended",
     "plugin:prettier/recommended",
+    "plugin:import/recommended",
+    "plugin:import/typescript",
     "eslint-config-prettier"
   ],
   "parser": "@typescript-eslint/parser",
@@ -29,7 +31,42 @@
     ],
     "react/jsx-uses-react": "off",
     "react/react-in-jsx-scope": "off",
-    "@typescript-eslint/no-var-requires": 0
+    "@typescript-eslint/no-var-requires": 0,
+    "import-helpers/order-imports": [
+      "error",
+      {
+        "newlinesBetween": "ignore",
+        "groups": [
+          "/^react$/",
+          "/^react-router-dom/",
+          "/^react-i18next/",
+          "/\\bformik\\b/",
+          "/yup/",
+          "module",
+          "/^modules/",
+          "/^contexts/",
+          "/^helpers/",
+          "/^hooks/",
+          "/^services/",
+          "/^containers/",
+          "/^layouts/",
+          "/^generic/",
+          "/^icons/",
+          "/^assets/",
+          "/^types/",
+          ["parent", "sibling", "index"]
+        ],
+        "alphabetize": { "order": "asc", "ignoreCase": true }
+      }
+    ]
+  },
+  "settings": {
+    "import/resolver": {
+      "node": {
+        "extensions": [".js", ".jsx", ".ts", ".tsx"]
+      },
+      "typescript": {}
+    }
   },
   "env": {
     "es6": true,

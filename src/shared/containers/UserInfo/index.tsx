@@ -2,12 +2,12 @@ import React from 'react'
 import { Title } from 'generic/Title'
 import { Container } from './styles'
 
-interface IUserInfo {
+interface UserInfoProps {
   name?: string
   role?: string
 }
 
-const UserInfo: React.FC<IUserInfo> = ({ name, role }) => {
+const UserInfo: React.FC<UserInfoProps> = ({ name, role }) => {
   return (
     <Container>
       <Title as="span" color="secondaryLight">

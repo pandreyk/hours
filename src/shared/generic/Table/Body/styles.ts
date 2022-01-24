@@ -1,8 +1,7 @@
 import styled from '@emotion/styled'
-import { css } from '@emotion/react'
 import { colors } from '../../themes'
 
-interface ITableBodyStyle {
+interface TableBodyStyle {
   align?: string
   overflow?: string
   width?: string
@@ -11,23 +10,15 @@ interface ITableBodyStyle {
   isVerticalScroll?: boolean
 }
 
-export const Body = styled.tbody<ITableBodyStyle>``
+export const Body = styled.tbody``
 
-export const Row = styled.tr<ITableBodyStyle>`
-  border-top: solid 1px ${colors.primary};
-  border-bottom: solid 1px ${colors.primary};
-
-  ${({ isVerticalScroll }) =>
-    isVerticalScroll &&
-    css`
-      :last-of-type {
-        border: none;
-      }
-    `}}
+export const Row = styled.tr<TableBodyStyle>`
+  box-shadow: inset 0 -1px 0 ${colors.primary}; // its border
 `
 
-export const Cell = styled.td<ITableBodyStyle>`
+export const Cell = styled.td<TableBodyStyle>`
   padding: 0.7rem 1rem;
+  position: relative;
   border-left: solid 1px ${colors.primary};
   border-right: solid 1px ${colors.primary};
   outline: none;
@@ -49,16 +40,17 @@ export const Cell = styled.td<ITableBodyStyle>`
   }
 `
 
-export const CellContainer = styled.div<ITableBodyStyle>`
+export const CellContainer = styled.div<TableBodyStyle>`
   &,
   a {
     display: flex;
     overflow: ${({ overflow }) => overflow || 'auto'};
     align-items: center;
+    justify-content: ${({ align }) => align || 'normal'};
   }
 `
 
-export const CellSpan = styled.span<ITableBodyStyle>`
+export const CellSpan = styled.span<TableBodyStyle>`
   white-space: nowrap;
   overflow: ${({ overflow }) => overflow || 'hidden'};
   text-overflow: ellipsis;

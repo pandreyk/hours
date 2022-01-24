@@ -1,6 +1,6 @@
 import React from 'react'
 
-export type movable = {
+export type MovableType = {
   node: { scrollWidth: React.SetStateAction<number> }
   isDown: boolean
   position: {

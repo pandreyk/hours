@@ -1,6 +1,6 @@
-import React from 'react'
-import { ITableHeader, ITableHeaderCell } from '../interfaces'
+import React, { ReactElement, PropsWithChildren } from 'react'
 import TriangularArrow from '../TriangularArrow.svg'
+import { TableHeader, TableHeaderCell } from '../types'
 import {
   Cell,
   StyledHeader,
@@ -11,12 +11,15 @@ import {
   IconWrapper,
 } from './styles'
 
-const Header = ({ children, changeSort, ...rest }: ITableHeader) => {
+const Header = ({ children, ...rest }: TableHeader) => {
   return (
-    <StyledHeader onClick={changeSort} {...rest}>
+    <StyledHeader {...rest}>
       <Row>
-        {React.Children.map(children, (child: any) =>
-          React.cloneElement(child, rest),
+        {React.Children.map(children, (child) =>
+          React.cloneElement(
+            child as ReactElement<PropsWithChildren<TableHeaderCell>>,
+            rest,
+          ),
         )}
       </Row>
     </StyledHeader>
@@ -25,27 +28,26 @@ const Header = ({ children, changeSort, ...rest }: ITableHeader) => {
 
 const CellComponent = ({
   children,
+  changeSort,
   fieldName,
   orderType,
   sortedBy,
-}: ITableHeaderCell) => {
+  align,
+}: TableHeaderCell) => {
   const isDesc = orderType === 'desc' && fieldName === sortedBy
   const isAsc = orderType === 'asc' && fieldName === sortedBy
 
   return (
     <Cell>
-      <CellContainer>
-        <CellSpan>{children}</CellSpan>
+      <CellContainer align={align}>
+        {children}
         {fieldName && (
-          <IconsContainer
-            pointer={Boolean(fieldName)}
-            data-fieldname={fieldName}
-          >
+          <IconsContainer onClick={() => changeSort && changeSort(fieldName)}>
             <IconWrapper active={isDesc}>
-              <img src={TriangularArrow} data-fieldname={fieldName} alt="" />
+              <img src={TriangularArrow} alt="" />
             </IconWrapper>
             <IconWrapper active={isAsc}>
-              <img src={TriangularArrow} data-fieldname={fieldName} alt="" />
+              <img src={TriangularArrow} alt="" />
             </IconWrapper>
           </IconsContainer>
         )}

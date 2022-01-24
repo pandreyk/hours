@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from 'react'
-import { useMediaQuery } from './useMediaQuery'
 import TriangularArrow from '../TriangularArrow.svg'
+import { useMediaQuery } from './useMediaQuery'
 import {
   Container,
   LeftArrowWrapper,
@@ -15,13 +15,13 @@ const breakpoints = {
   large: 1800,
 }
 
-interface IPagination {
+interface PaginationProps {
   countPages: number | null
   selectedPage: number
   selectPage: (i: number) => void
 }
 
-const Pagination: React.FC<IPagination> = ({
+const Pagination: React.FC<PaginationProps> = ({
   countPages,
   selectedPage,
   selectPage,

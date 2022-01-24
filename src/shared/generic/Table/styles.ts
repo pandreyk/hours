@@ -1,5 +1,5 @@
 import styled from '@emotion/styled'
-import { colors } from 'generic/themes'
+import { colors } from '../themes'
 
 interface ITableStyle {
   height?: string
@@ -8,12 +8,16 @@ interface ITableStyle {
 }
 
 export const Holder = styled.div<ITableStyle>`
-  overflow-x: auto;
+  overflow: auto;
   cursor: ${({ isHorizontalScroll, isDragging }) =>
     !isHorizontalScroll ? 'default' : isDragging ? 'grabbing' : 'grab'};
   background-color: ${colors.secondaryLight};
   border: solid 1px ${colors.primary};
-  height: ${({ height }) => height};
+  border-bottom: none;
+  box-shadow: inset 0 -1px 0 ${colors.primary}; // its border bottom;
+  height: ${({ height }) => height || '100%'};
+  min-height: 120px;
+  transition: all 0.4s;
 `
 
 export const StyledTable = styled.table<ITableStyle>`

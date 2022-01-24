@@ -1,8 +1,8 @@
 import React from 'react'
 import { Story } from '@storybook/react'
-import { Table } from './Table'
 import { useSort } from './Sort/useSort'
-import { ITable } from './interfaces'
+import { Table } from './Table'
+import { Table as TableProps } from './types'
 
 export default {
   title: 'Components/Table',
@@ -36,7 +36,7 @@ const data = [
   { a: 'a', b: 'b', c: 'c', d: 'd', e: 'e', f: 'f', g: 'g', h: 'h', i: 'i' },
 ]
 
-const Template: Story<ITable> = (args) => {
+const Template: Story<TableProps> = (args) => {
   const [sortedBy, orderType, changeSort] = useSort('A')
 
   const { Columns, Header, Body } = Table

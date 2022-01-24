@@ -19,10 +19,11 @@ export const PepagaItem = styled.div`
   position: relative;
   display: flex;
   align-items: center;
-  justify-content: space-between;
-  width: 30rem;
+  justify-content: center;
+  width: 20rem;
   height: 60px;
   z-index: 1;
   margin: 1rem 0;
   background-color: darkcyan;
+  border: solid 1px black;
 `

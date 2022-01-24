@@ -1,6 +1,6 @@
 import React, { ReactNode } from 'react'
+import { Labels } from '../Tabs/Labels'
 import { StyledTab, TabsContainer } from './styles'
-import { Labels } from './Labels'
 
 export interface ITabs {
   children: ReactNode

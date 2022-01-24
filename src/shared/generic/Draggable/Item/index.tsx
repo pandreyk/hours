@@ -1,10 +1,10 @@
 import React from 'react'
 import { useDraggable } from '../lib/useDraggable'
-import { Hover, HoverOut } from '../types'
+import { Drop, Hover, HoverOut } from '../types'
 import { Container } from './styles'
 
-interface IDraggableItem {
-  onDrop: (draggedComponent: HTMLDivElement, ...args: unknown[]) => void
+interface DraggableItem {
+  onDrop: Drop
   droppedClassName?: string
   handleClassName?: string
   dragHeight?: number
@@ -13,15 +13,12 @@ interface IDraggableItem {
   style?: React.CSSProperties
 }
 
-export const Item: React.FC<IDraggableItem> = ({
+export const Item: React.FC<DraggableItem> = ({
   children,
   onDrop,
   handleClassName = '',
-  droppedClassName = '',
   dragHeight = 0,
-  // eslint-disable-next-line @typescript-eslint/no-empty-function
   onHover = () => {},
-  // eslint-disable-next-line @typescript-eslint/no-empty-function
   onHoverOut = () => {},
   style,
 }) => {
@@ -34,12 +31,7 @@ export const Item: React.FC<IDraggableItem> = ({
   })
 
   return (
-    <Container
-      id="drag"
-      data-dropped={droppedClassName}
-      style={style}
-      ref={refDraggable}
-    >
+    <Container id="drag" style={style} ref={refDraggable}>
       {children}
     </Container>
   )

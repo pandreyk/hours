@@ -1,19 +1,14 @@
 import { useState } from 'react'
+import { ChangeSort } from '../types'
 
 type Order = 'asc' | 'desc'
-type Event = {
-  target: { dataset: { fieldname: string } }
-}
-type Result = [string, Order, (e: Event) => void]
+type Result = [string, Order, ChangeSort]
 
 export const useSort = (initialSortedBy: string, order?: Order): Result => {
   const [sortedBy, setSortedBy] = useState<string>(initialSortedBy)
   const [orderType, setOrderType] = useState<Order>(order || 'asc')
 
-  const changeSort = (e: Event) => {
-    const dataset = { ...e.target.dataset }
-    const { fieldname } = dataset
-
+  const changeSort = (fieldname?: string) => {
     if (!fieldname) return
 
     if (fieldname !== sortedBy) {

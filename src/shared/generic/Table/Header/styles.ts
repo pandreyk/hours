@@ -1,32 +1,33 @@
 import styled from '@emotion/styled'
-import { colors } from 'generic/themes'
+import { colors } from '../../themes'
 
-interface ITableHeaderStyle {
+interface TableHeaderStyle {
   headerSticky?: boolean
   pointer?: boolean
   active?: boolean
+  align?: string
 }
 
-export const StyledHeader = styled.thead<ITableHeaderStyle>`
+export const StyledHeader = styled.thead`
   padding: 0.375rem 1rem;
   background-color: ${colors.secondaryLight};
   position: sticky;
   top: 0;
-  z-index: 2;
-
   box-shadow: inset 0 -1px 0 ${colors.primary}; // its border
+  z-index: 2;
 `
 
-export const Row = styled.tr<ITableHeaderStyle>``
+export const Row = styled.tr``
 
-export const Cell = styled.td<ITableHeaderStyle>`
-  padding: 0.375rem 1rem;
+export const Cell = styled.td<TableHeaderStyle>`
+  padding: 0.375rem 0.6rem;
   border-left: 1px solid ${colors.primary};
   border-right: 1px solid ${colors.primary};
   outline: none;
   white-space: nowrap;
-  font-size: 1rem;
-  text-align: ${({ align }) => align || 'start'};
+  font-family: GFSNeohellenic, sans-serif;
+  font-size: 1.2rem;
+  letter-spacing: 2px;
   color: ${colors.black};
   text-decoration: none;
   line-height: 1.5rem;
@@ -40,25 +41,24 @@ export const Cell = styled.td<ITableHeaderStyle>`
   }
 `
 
-export const CellContainer = styled.div<ITableHeaderStyle>`
+export const CellContainer = styled.div<TableHeaderStyle>`
   display: flex;
-  justify-content: space-between;
+  justify-content: ${({ align }) => align || 'space-between'};
 `
 
-export const CellSpan = styled.span<ITableHeaderStyle>`
+export const CellSpan = styled.span`
   display: inline-flex;
   align-items: center;
-  margin: 0 1.6rem 0 0;
   cursor: default;
 `
 
-export const IconsContainer = styled.div<ITableHeaderStyle>`
+export const IconsContainer = styled.div`
   display: flex;
   flex-direction: column;
-  cursor: ${({ pointer }) => (pointer ? 'pointer' : 'default')};
+  cursor: pointer;
 `
 
-export const IconWrapper = styled.div<ITableHeaderStyle>`
+export const IconWrapper = styled.div<TableHeaderStyle>`
   display: flex;
   opacity: ${({ active }) => (active ? '1' : '0.5')};
 

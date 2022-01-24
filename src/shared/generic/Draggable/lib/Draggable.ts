@@ -1,6 +1,6 @@
 import { Root, Drop, Hover, HoverOut } from '../types'
 
-interface IConstructor {
+interface Constructor {
   root: Root
   onDrop: Drop
   handleClassName: string
@@ -22,7 +22,7 @@ export class Draggable {
   private currentDroppable: HTMLElement | null
   private parentElement: HTMLElement | null
   private parentChildren: NodeList | null
-  private parentClassName: string
+  private parentDroppableId: string
   private draggedIndex: number
 
   private scrollY: number
@@ -47,7 +47,7 @@ export class Draggable {
     dragHeight,
     onHover,
     onHoverOut,
-  }: IConstructor) {
+  }: Constructor) {
     this.node = root
     this.onDrop = onDrop
     this.handleClassName = handleClassName
@@ -60,7 +60,7 @@ export class Draggable {
     this.currentDroppable = null
     this.parentElement = null
     this.parentChildren = null
-    this.parentClassName = ''
+    this.parentDroppableId = ''
     this.draggedIndex = 0
 
     this.shiftY = 0
@@ -100,7 +100,7 @@ export class Draggable {
     if (!elemBelow?.closest(`.${this.handleClassName}`)) return
 
     this.parentElement = this.node.parentNode as HTMLElement
-    this.parentClassName = this.parentElement.classList[0]
+    this.parentDroppableId = this.parentElement.dataset.droppableId as string
     this.parentChildren = this.parentElement.querySelectorAll('div#drag')
     const parentChildrenArray =
       this.parentChildren &&
@@ -132,9 +132,15 @@ export class Draggable {
 
   onMouseUp(event: MouseEvent) {
     const dragComponent = this.node
-    const droppedElement = document.querySelector(
-      `.${dragComponent.dataset.dropped}`,
-    )
+    const droppedContainer = this.currentDroppable as HTMLDivElement
+
+    // console.log('dragComponent', dragComponent)
+    // console.log('droppedContainer', droppedContainer)
+
+    const prevTranslateY = dragComponent.dataset.translateY
+
+    dragComponent.dataset.prevDroppableId = this.parentDroppableId
+    dragComponent.dataset.prevTranslateY = prevTranslateY
 
     document.removeEventListener('mousemove', this.onMouseMoveEvent)
     document.body.onmouseleave = null
@@ -151,22 +157,20 @@ export class Draggable {
     }, 500) // because transition is 0.5s
 
     // if success drop to new zone
-    if (this.IN_DROPPED_ZONE && this.currentDroppable) {
-      this.leaveDroppable(this.currentDroppable)
-      this.onDrop(dragComponent)
+    if (this.IN_DROPPED_ZONE && droppedContainer) {
+      this.leaveDroppable(droppedContainer)
+      this.onDrop(dragComponent, droppedContainer)
 
-      dragComponent.dataset.dropped = this.parentClassName
-
-      if (!droppedElement || !this.parentElement) return
+      if (!droppedContainer || !this.parentElement) return
 
       const containerShiftY =
         event.clientY -
-        droppedElement.getBoundingClientRect().top +
-        droppedElement.scrollTop
+        droppedContainer.getBoundingClientRect().top +
+        droppedContainer.scrollTop
       const containerShiftX =
-        event.clientX - droppedElement.getBoundingClientRect().left
+        event.clientX - droppedContainer.getBoundingClientRect().left
 
-      const droppedChildren = droppedElement.querySelectorAll('div#drag')
+      const droppedChildren = droppedContainer.querySelectorAll('div#drag')
       const droppedChildrenArray =
         droppedChildren &&
         Array.from(droppedChildren as NodeListOf<HTMLElement>)
@@ -181,11 +185,10 @@ export class Draggable {
         containerShiftX -
         this.shiftX -
         this.marginLeft -
-        droppedElement.clientWidth / 2
+        droppedContainer.clientWidth / 2
       const oldPosY = containerShiftY - this.shiftY - this.marginTop
       dragComponent.style.transform = `translate(${oldPosX}px, ${oldPosY}px)`
       dragComponent.style.left = `50%`
-      // dragComponent.style.zIndex = '1'
 
       setTimeout(() => {
         this.posY = newPosY
@@ -211,7 +214,7 @@ export class Draggable {
         item.dataset.translateY = String(translateY)
       })
 
-      droppedElement.insertBefore(
+      droppedContainer.insertBefore(
         dragComponent,
         droppedChildren[newPositionIndex],
       )
@@ -256,16 +259,17 @@ export class Draggable {
 
     if (!elemBelow) return
 
-    const droppableBelow = elemBelow.closest<HTMLElement>(
-      `.${this.node.dataset.dropped}`,
-    )
+    const droppableBelow = elemBelow.closest<HTMLElement>('[data-droppable-id]')
 
     if (this.currentDroppable != droppableBelow) {
       if (this.currentDroppable) {
         this.leaveDroppable(this.currentDroppable)
       }
       this.currentDroppable = droppableBelow
-      if (this.currentDroppable) {
+      if (
+        this.currentDroppable &&
+        droppableBelow?.dataset.droppableId !== this.parentDroppableId
+      ) {
         this.enterDroppable(this.currentDroppable)
       }
     }
@@ -325,6 +329,10 @@ export class Draggable {
   leaveDroppable = (elem: HTMLElement) => {
     this.IN_DROPPED_ZONE = false
     this.onHoverOut(elem)
+  }
+
+  cancelDrop = () => {
+    console.log('CancelDrop')
   }
 
   static disableScrolling = () => {

@@ -1,8 +1,8 @@
 import { useState, useEffect } from 'react'
-import { Draggable } from './Draggable'
 import { Drop, Hover, HoverOut } from '../types'
+import { Draggable } from './Draggable'
 
-type IConfig = {
+interface Config {
   onDrop: Drop
   handleClassName: string
   dragHeight: number
@@ -16,7 +16,7 @@ export const useDraggable = ({
   dragHeight,
   onHover,
   onHoverOut,
-}: IConfig) => {
+}: Config) => {
   const [viewport, setViewport] = useState<any>(null) //тут не знаю какой тип, уродский тс
 
   useEffect(() => {
@@ -34,5 +34,5 @@ export const useDraggable = ({
     }
   }, [viewport])
 
-  return [setViewport, viewport]
+  return [setViewport]
 }

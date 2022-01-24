@@ -2,18 +2,20 @@ import React, { useEffect } from 'react'
 import { Container } from './styles'
 
 interface IDraggableColumn {
-  className: string
   dragHeight: number
+  dropId: string
 }
 
 export const Column: React.FC<IDraggableColumn> = ({
   children,
-  className,
+  dropId,
   dragHeight,
   ...rest
 }) => {
   useEffect(() => {
-    const container = document.querySelector(`.${className}`) as HTMLElement
+    const container = document.querySelector(
+      `${`[data-droppable-id="${dropId}"]`}`,
+    ) as HTMLElement
     const children = container?.querySelectorAll('div#drag')
     const childrenArray =
       children && Array.from(children as NodeListOf<HTMLElement>)
@@ -28,7 +30,7 @@ export const Column: React.FC<IDraggableColumn> = ({
   }, [])
 
   return (
-    <Container className={className}>
+    <Container data-droppable-id={dropId}>
       {React.Children.map(children, (child: any) =>
         React.cloneElement(child, { dragHeight, ...rest }),
       )}

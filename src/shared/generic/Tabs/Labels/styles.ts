@@ -5,7 +5,6 @@ const border = `solid 1px ${colors.black}`
 
 export const Container = styled.div`
   position: relative;
-  overflow: hidden;
 
   :hover {
     > div:first-of-type,

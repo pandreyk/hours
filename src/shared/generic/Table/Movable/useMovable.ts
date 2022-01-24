@@ -1,8 +1,8 @@
 import { useState, useEffect } from 'react'
 import { Movable } from './Movable'
-import { movable } from './types'
+import { MovableType } from './types'
 
-export const useMovable = (onChange: (e: movable) => void) => {
+export const useMovable = (onChange: (e: MovableType) => void) => {
   const [viewport, setViewport] = useState<any>(null) //тут не знаю какой тип, уродский тс
 
   useEffect(() => {

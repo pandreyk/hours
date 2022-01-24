@@ -1,8 +1,8 @@
-import { movable } from './types'
+import { MovableType } from './types'
 
 export class Movable {
   private readonly node: HTMLDivElement
-  private readonly onChange: (movable: movable) => void
+  private readonly onChange: (movable: MovableType) => void
 
   private isDown: boolean
   private position: {
@@ -18,7 +18,7 @@ export class Movable {
 
   constructor(
     sliderRoot: HTMLDivElement,
-    onChange: (movable: movable) => void,
+    onChange: (movable: MovableType) => void,
   ) {
     this.node = sliderRoot
     this.onChange = onChange

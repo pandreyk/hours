@@ -1,36 +1,37 @@
-import React, { ReactNode } from 'react'
-import { ITableBody, ITableBodyCell, ITableBodyRow } from '../interfaces'
+import React, { ReactElement, PropsWithChildren } from 'react'
+import { TableBody, TableBodyCell, TableBodyRow } from '../types'
 import { Row, Body, Cell, CellContainer, CellSpan } from './styles'
 
-const BodyComponent = ({ children, ...rest }: ITableBody) => {
+const BodyComponent = ({ children, ...rest }: TableBody) => {
   return (
     <Body>
-      {React.Children.map(children, (child: any) =>
-        React.cloneElement(child, rest),
+      {React.Children.map(children, (child) =>
+        React.cloneElement(
+          child as ReactElement<PropsWithChildren<TableBodyRow>>,
+          rest,
+        ),
       )}
     </Body>
   )
 }
 
-const RowComponent = ({ children, style, ...rest }: ITableBodyRow) => {
+const RowComponent = ({ children, style, ...rest }: TableBodyRow) => {
   return (
-    <Row style={style} {...rest}>
-      {React.Children.map(children, (child: any) =>
-        React.cloneElement(child, rest),
+    <Row style={style}>
+      {React.Children.map(children, (child) =>
+        React.cloneElement(
+          child as ReactElement<PropsWithChildren<TableBodyCell>>,
+          rest,
+        ),
       )}
     </Row>
   )
 }
 
-const CellComponent = ({
-  children,
-  style,
-  overflow,
-  ...rest
-}: ITableBodyCell) => {
+const CellComponent = ({ children, align, style, overflow }: TableBodyCell) => {
   return (
-    <Cell style={style} {...rest}>
-      <CellContainer overflow={overflow}>
+    <Cell style={style}>
+      <CellContainer align={align} overflow={overflow}>
         <CellSpan
           overflow={overflow}
           title={typeof children === 'string' ? children : ''}

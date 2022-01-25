@@ -1,19 +1,16 @@
 import styled from '@emotion/styled'
 import { colors } from 'generic/themes'
 
-interface ITableLayoutStyle {
-  height?: string
-  defaultCursor?: boolean
-  isDragging?: boolean
-}
-
-export const Layout = styled.div<ITableLayoutStyle>`
+export const Layout = styled.div`
   position: relative;
+  height: 100%;
 `
 
-export const TableContainer = styled.div<ITableLayoutStyle>``
+export const TableContainer = styled.div`
+  height: calc(100% - 66px);
+`
 
-export const LoaderContainer = styled.div<ITableLayoutStyle>`
+export const LoaderContainer = styled.div`
   position: absolute;
   display: flex;
   flex-direction: column;
@@ -27,7 +24,7 @@ export const LoaderContainer = styled.div<ITableLayoutStyle>`
   opacity: 0.3;
 `
 
-export const LeftTopAnchor = styled.div<ITableLayoutStyle>`
+export const LeftTopAnchor = styled.div`
   position: absolute;
   right: 0;
   bottom: 0;
@@ -43,7 +40,7 @@ export const LeftTopAnchor = styled.div<ITableLayoutStyle>`
   z-index: 3;
 `
 
-export const IconWrapper = styled.div<ITableLayoutStyle>`
+export const IconWrapper = styled.div`
   cursor: pointer;
   transition: transform 0.2s ease;
   display: flex;
@@ -53,8 +50,18 @@ export const IconWrapper = styled.div<ITableLayoutStyle>`
   }
 `
 
-export const PaginationContainer = styled.div<ITableLayoutStyle>`
+export const PaginationContainer = styled.div`
+  height: 66px;
+  display: flex;
+  justify-content: center;
   background-color: ${colors.secondaryLight};
   border: 1px solid ${colors.primary};
   border-top: none;
+`
+
+export const NoDataWrapper = styled.div`
+  position: absolute;
+  top: 45%;
+  left: 50%;
+  transform: translate(-50%, -50%);
 `

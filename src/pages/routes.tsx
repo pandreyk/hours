@@ -1,9 +1,9 @@
 import React from 'react'
 import { Switch, Route, Redirect } from 'react-router-dom'
+import AdminRoutes from 'pages/admin'
+import LoginPage from 'pages/login'
 import { PrivateRoute } from 'containers/PrivateRoute'
 import { Roles } from 'types/general'
-import LoginPage from 'pages/login'
-import AdminRoutes from 'pages/admin'
 
 interface IRoutes {
   localStoreHasJWT: boolean

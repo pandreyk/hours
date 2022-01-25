@@ -1,5 +1,5 @@
-import i18n from 'i18next'
 import { initReactI18next } from 'react-i18next'
+import i18n from 'i18next'
 import { TRANSLATIONS_EN_US } from './messages/en-US'
 import { TRANSLATIONS_RU_RU } from './messages/ru-RU'
 

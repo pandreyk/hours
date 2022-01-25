@@ -1,0 +1,128 @@
+[
+  {
+    "id": 1,
+    "FullName": "Shkolyar 1",
+    "ClassId": {
+      "id": 1,
+      "Number": 1,
+      "Subclass": "a"
+    }
+  },
+  {
+    "id": 2,
+    "FullName": "Shkolyar 2",
+    "ClassId": {
+      "id": 1,
+      "Number": 1,
+      "Subclass": "a"
+    }
+  },
+  {
+    "id": 3,
+    "FullName": "Shkolyar 3",
+    "ClassId": {
+      "id": 2,
+      "Number": 1,
+      "Subclass": "b"
+    }
+  },
+  {
+    "id": 4,
+    "FullName": "Shkolyar 4",
+    "ClassId": {
+      "id": 2,
+      "Number": 1,
+      "Subclass": "b"
+    }
+  },
+  {
+    "id": 5,
+    "FullName": "Shkolyar 5",
+    "ClassId": {
+      "id": 3,
+      "Number": 2,
+      "Subclass": "a"
+    }
+  },
+  {
+    "id": 6,
+    "FullName": "Shkolyar 6",
+    "ClassId": {
+      "id": 3,
+      "Number": 2,
+      "Subclass": "a"
+    }
+  },
+  {
+    "id": 7,
+    "FullName": "Shkolyar 7",
+    "ClassId": {
+      "id": 4,
+      "Number": 2,
+      "Subclass": "b"
+    }
+  },
+  {
+    "id": 8,
+    "FullName": "Shkolyar 8",
+    "ClassId": {
+      "id": 4,
+      "Number": 2,
+      "Subclass": "b"
+    }
+  },
+  {
+    "id": 9,
+    "FullName": "Shkolyar 9",
+    "ClassId": {
+      "id": 5,
+      "Number": 3,
+      "Subclass": "a"
+    }
+  },
+  {
+    "id": 10,
+    "FullName": "Shkolyar 10",
+    "ClassId": {
+      "id": 5,
+      "Number": 3,
+      "Subclass": "a"
+    }
+  },
+  {
+    "id": 11,
+    "FullName": "Shkolyar 11",
+    "ClassId": {
+      "id": 6,
+      "Number": 4,
+      "Subclass": "a"
+    }
+  },
+  {
+    "id": 12,
+    "FullName": "Shkolyar 12",
+    "ClassId": {
+      "id": 6,
+      "Number": 4,
+      "Subclass": "a"
+    }
+  },
+  {
+    "id": 13,
+    "FullName": "Shkolyar 13",
+    "ClassId": {
+      "id": 7,
+      "Number": 5,
+      "Subclass": "a"
+    }
+  },
+  {
+    "id": 14,
+    "FullName": "Shkolyar 14",
+    "ClassId": {
+      "id": 7,
+      "Number": 5,
+      "Subclass": "a"
+    }
+  }
+]

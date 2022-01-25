@@ -2,7 +2,7 @@ import { getUser } from 'helpers/currentUser'
 
 const jwt = 'jwt'
 
-interface IResponse<T> {
+interface Response<T> {
   status: number
   ok: boolean
   data?: T
@@ -12,7 +12,7 @@ interface IResponse<T> {
 const request = async <T>(
   path: string,
   { method, body }: RequestInit,
-): Promise<IResponse<T>> => {
+): Promise<Response<T>> => {
   try {
     const response = await fetch(`${process.env.REACT_APP_ENDPOINT}/${path}`, {
       method,

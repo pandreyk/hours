@@ -14,6 +14,7 @@
     "resolveJsonModule": true,
     "isolatedModules": true,
     "noEmit": true,
+    "noEmitOnError": true,
     "jsx": "react-jsx",
     "baseUrl": "./src",
     "paths": {
@@ -33,7 +34,8 @@
       "styles/*": ["./styles/*"],
       "services/*": ["./services/*"],
       "modules/*": ["./modules/*"],
-      "types/*": ["./types/*"]
+      "types/*": ["./types/*"],
+      "mocks/*": ["./mocks/*"],
     }
   },
   "include": ["src"]

@@ -1,6 +1,6 @@
 import React from 'react'
-import { StyledButton } from './styles'
 import { Color } from '../themes'
+import { StyledButton } from './styles'
 
 interface IButton extends React.ButtonHTMLAttributes<HTMLButtonElement> {
   backgroundColor?: Color

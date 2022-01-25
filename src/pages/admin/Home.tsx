@@ -1,6 +1,6 @@
 import React from 'react'
-import PageLayout from 'layouts/Page'
 import Home from 'modules/Home'
+import PageLayout from 'layouts/Page'
 
 const HomePage: React.FC = () => {
   return (

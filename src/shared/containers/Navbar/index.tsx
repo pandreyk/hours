@@ -9,7 +9,7 @@ const Navbar: React.FC = () => {
   const { t } = useTranslation()
   const { path } = useRouteMatch()
 
-  const { home, assignment } = AdminRoutesList
+  const { home, assignment, teachers } = AdminRoutesList
 
   return (
     <Container>
@@ -21,8 +21,13 @@ const Navbar: React.FC = () => {
         <MenuItem isActive={path === assignment} path={assignment}>
           {t('Assignment')}
         </MenuItem>
+
+        <MenuItem isActive={path === teachers} path={teachers}>
+          {t('Teachers')}
+        </MenuItem>
       </Content>
     </Container>
   )
 }
+
 export default Navbar

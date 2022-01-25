@@ -8,7 +8,7 @@ import { Table as TableProps } from './types'
 import { Holder, StyledTable } from './styles'
 
 const Table = ({ children, height, ...rest }: TableProps) => {
-  const [scrollWidth, setScrollWidth] = useState<number>(0) //because of style {table-layout: fixed;}
+  const [scrollWidth, setScrollWidth] = useState<number>(0) // because of style {table-layout: fixed;}
   const [tableWidth, setTableWidth] = useState<number>(0)
   const [isHorizontalScroll, setIsHorizontalScroll] = useState<boolean>(false)
   const [isDragging, setIsDragging] = useState<boolean>(false)

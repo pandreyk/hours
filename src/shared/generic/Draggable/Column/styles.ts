@@ -1,5 +1,5 @@
 import styled from '@emotion/styled'
-import { colors } from 'generic/themes'
+import { colors } from '../../themes'
 
 export const Container = styled.div`
   position: relative;

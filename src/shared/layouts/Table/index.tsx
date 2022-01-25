@@ -19,7 +19,7 @@ interface ITableLayout {
   loading?: boolean
 }
 
-export const TableLayout: React.FC<ITableLayout> = ({
+const TableLayout: React.FC<ITableLayout> = ({
   children,
   countPages = 1,
   rowsCount,

@@ -7,7 +7,6 @@ import {
   Row,
   IconsContainer,
   CellContainer,
-  CellSpan,
   IconWrapper,
 } from './styles'
 

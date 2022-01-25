@@ -1,4 +1,5 @@
 const ESLintPlugin = require('eslint-webpack-plugin')
+const ForkTsCheckerWebpackPlugin = require('fork-ts-checker-webpack-plugin')
 const HtmlWebpackPlugin = require('html-webpack-plugin')
 const MiniCssExtractPlugin = require('mini-css-extract-plugin')
 const path = require('path')
@@ -29,6 +30,7 @@ module.exports = {
       services: path.resolve(__dirname, 'src/services'),
       modules: path.resolve(__dirname, 'src/modules'),
       types: path.resolve(__dirname, 'src/types'),
+      mocks: path.resolve(__dirname, 'src/mocks'),
     },
   },
   module: {
@@ -62,6 +64,13 @@ module.exports = {
       template: path.join(__dirname, 'src', 'index.html'),
     }),
     new MiniCssExtractPlugin(),
-    new ESLintPlugin(),
+    new ESLintPlugin({
+      files: './src/**/*.{ts,tsx,js,jsx}',
+      emitError: true,
+      emitWarning: false,
+      failOnError: true,
+      failOnWarning: false,
+    }),
+    new ForkTsCheckerWebpackPlugin(),
   ],
 }

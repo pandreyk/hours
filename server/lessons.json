@@ -1,0 +1,32 @@
+[
+  {
+    "SubjectId": 1,
+    "TeacherId": 1,
+    "ClassId": 1,
+    "Grades": [
+      {
+        "PupilId": 1,
+        "Grade": 5
+      },
+      {
+        "PupilId": 2,
+        "Grade": 2
+      }
+    ]
+  },
+  {
+    "SubjectId": 4,
+    "TeacherId": 1,
+    "ClassId": 2,
+    "Grades": [
+      {
+        "PupilId": 3,
+        "Grade": 3
+      },
+      {
+        "PupilId": 4,
+        "Grade": 3
+      }
+    ]
+  }
+]

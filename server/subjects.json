@@ -1,0 +1,18 @@
+[
+  {
+    "id": 1,
+    "Name": "Math"
+  },
+  {
+    "id": 2,
+    "Name": "Literature"
+  },
+  {
+    "id": 3,
+    "Name": "History"
+  },
+  {
+    "id": 4,
+    "Name": "Physical Culture"
+  }
+]

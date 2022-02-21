@@ -1,0 +1,32 @@
+[
+  {
+    "id": 1,
+    "FullName": "Pepega Olegovna",
+    "Subjects": [{
+      "id": 1,
+      "Name": "Math"
+    }]
+  },
+  {
+    "id": 2,
+    "FullName": "Lelo Pepegovich",
+    "Subjects": [{
+      "id": 4,
+      "Name": "Physical Culture"
+    }]
+  },
+  {
+    "id": 3,
+    "FullName": "Lela Pepegovna",
+    "Subjects": [
+      {
+        "id": 2,
+        "Name": "Literature"
+      },
+      {
+        "id": 3,
+        "Name": "History"
+      }
+    ]
+  }
+]

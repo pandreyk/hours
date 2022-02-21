@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from 'react'
 import { useTranslation } from 'react-i18next'
 import { getTeachers } from 'services/fakeApi'
+import { getTrueTeachers } from 'services/teachers'
 import TableLayout from 'layouts/Table'
 import { Table, usePagination } from 'generic/Table'
 import { Teachers } from 'types/models'
@@ -10,12 +11,20 @@ const TeachersModule: React.FC = () => {
   const { limit, offset, selectedPage, selectPage } = usePagination()
 
   const [data, setData] = useState<Teachers | undefined>()
+  const [teachers, setTeachers] = useState<any>()
   const [loading, setLoading] = useState<boolean>(false)
 
   useEffect(() => {
     setLoading(true)
     getTeachers()
       .then((response) => setData(response))
+      .finally(() => setLoading(false))
+
+    getTrueTeachers()
+      .then((response) => {
+        console.log('response', response)
+        setTeachers(response)
+      })
       .finally(() => setLoading(false))
   }, [])
 

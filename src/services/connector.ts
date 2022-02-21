@@ -14,7 +14,7 @@ const request = async <T>(
   { method, body }: RequestInit,
 ): Promise<Response<T>> => {
   try {
-    const response = await fetch(`${process.env.REACT_APP_ENDPOINT}/${path}`, {
+    const response = await fetch(`${process.env.ENDPOINT}/${path}`, {
       method,
       headers: {
         'Content-Type': 'application/json',

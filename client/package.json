@@ -5,9 +5,7 @@
   "main": "index.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
-    "server": "nodemon server/index.js",
-    "client": "webpack serve --mode development --config webpack.dev.js",
-    "dev": "concurrently \"yarn run server\" \"yarn run client\"",
+    "dev": "webpack serve --mode development --config webpack.dev.js",
     "build": "webpack --config webpack.prod.js",
     "storybook": "start-storybook -p 6006",
     "build-storybook": "build-storybook"
@@ -38,7 +36,6 @@
     "@typescript-eslint/eslint-plugin": "^5.6.0",
     "@typescript-eslint/parser": "^5.6.0",
     "babel-loader": "^8.2.3",
-    "concurrently": "^7.0.0",
     "css-loader": "^6.5.1",
     "dotenv-webpack": "^7.1.0",
     "eslint": "^8.4.1",
@@ -54,7 +51,6 @@
     "html-webpack-plugin": "^5.5.0",
     "json-server": "^0.17.0",
     "mini-css-extract-plugin": "^2.4.5",
-    "nodemon": "^2.0.15",
     "prettier": "^2.5.1",
     "style-loader": "^3.3.1",
     "typescript": "^4.4.4",

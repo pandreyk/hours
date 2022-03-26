@@ -5,7 +5,7 @@ import LoginPage from 'pages/login'
 import { PrivateRoute } from 'containers/PrivateRoute'
 import { Roles } from 'types/general'
 
-interface IRoutes {
+interface Routes {
   localStoreHasJWT: boolean
   authed: boolean
   role?: Roles
@@ -25,7 +25,7 @@ const pagesConfig: PagesConfig = {
   },
 }
 
-const Routes: React.FC<IRoutes> = ({ localStoreHasJWT, authed, role }) => {
+const Routes: React.FC<Routes> = ({ localStoreHasJWT, authed, role }) => {
   return (
     <Switch>
       {localStoreHasJWT ? (

@@ -1,19 +1,16 @@
-export interface IParams {
-  [key: string]: string
-}
+import { Params } from './types'
 
-export const getUrlParams = (params: IParams = {}): string => {
-  const upperCaseFirst = (str: string): string => {
-    if (!str) return str
-    return str[0].toUpperCase() + str.slice(1)
-  }
-
+export const getUrlParams = (params: Params = {}): string => {
   const urlParams = new URLSearchParams()
 
   for (const key in params) {
-    if (params[key] !== null) {
-      urlParams.append(upperCaseFirst(key), params[key])
+    if (
+      typeof params[key] !== 'undefined' &&
+      String(params[key])?.trim() !== ''
+    ) {
+      urlParams.append(key, String(params[key]))
     }
   }
+
   return urlParams.toString()
 }

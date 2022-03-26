@@ -2,18 +2,22 @@
   {
     "id": 1,
     "FullName": "Pepega Olegovna",
-    "Subjects": [{
-      "id": 1,
-      "Name": "Math"
-    }]
+    "Subjects": [
+      {
+        "id": 1,
+        "Name": "Math"
+      }
+    ]
   },
   {
     "id": 2,
     "FullName": "Lelo Pepegovich",
-    "Subjects": [{
-      "id": 4,
-      "Name": "Physical Culture"
-    }]
+    "Subjects": [
+      {
+        "id": 4,
+        "Name": "Physical Culture"
+      }
+    ]
   },
   {
     "id": 3,

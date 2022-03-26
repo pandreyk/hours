@@ -1,5 +1,11 @@
 {
-  "plugins": ["react", "prettier", "@typescript-eslint", "import-helpers", "import"],
+  "plugins": [
+    "react",
+    "prettier",
+    "@typescript-eslint",
+    "import-helpers",
+    "import"
+  ],
   "extends": [
     "eslint:recommended",
     "plugin:react-hooks/recommended",
@@ -9,7 +15,9 @@
     "plugin:prettier/recommended",
     "plugin:import/recommended",
     "plugin:import/typescript",
-    "eslint-config-prettier"
+    "eslint-config-prettier",
+    "plugin:import/errors",
+    "plugin:import/warnings"
   ],
   "parser": "@typescript-eslint/parser",
   "parserOptions": {
@@ -33,6 +41,7 @@
     "react/react-in-jsx-scope": "off",
     "@typescript-eslint/no-var-requires": 0,
     "@typescript-eslint/no-empty-function": "off",
+    "import/named": "off",
     "import-helpers/order-imports": [
       "error",
       {
@@ -64,11 +73,16 @@
     ]
   },
   "settings": {
+    "import/named": "off",
     "import/resolver": {
       "node": {
-        "extensions": [".js", ".jsx", ".ts", ".tsx"]
+        "paths": ["./src"],
+        "extensions": [".js", ".jsx", ".ts", ".tsx"],
+        "moduleDirectory": ["node_modules", "./src"]
       },
-      "typescript": {}
+      "webpack": {
+        "config": "webpack.common.js"
+      }
     }
   },
   "env": {

@@ -9,7 +9,7 @@ import {
   PaginationContainer,
 } from './styles'
 
-interface ITableLayout {
+interface TableLayout {
   children: ReactNode
   countPages?: number
   rowsCount?: number
@@ -19,7 +19,7 @@ interface ITableLayout {
   loading?: boolean
 }
 
-const TableLayout: React.FC<ITableLayout> = ({
+const TableLayout: React.FC<TableLayout> = ({
   children,
   countPages = 1,
   rowsCount,

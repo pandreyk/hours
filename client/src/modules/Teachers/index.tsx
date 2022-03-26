@@ -1,32 +1,21 @@
-import React, { useState, useEffect } from 'react'
+import React, { useEffect } from 'react'
 import { useTranslation } from 'react-i18next'
-import { getTeachers } from 'services/fakeApi'
-import { getTrueTeachers } from 'services/teachers'
+import { useAppDispatch, useAppSelector } from 'reduxroot/root'
+import { fetchTeachers } from 'reduxroot/teachers'
 import TableLayout from 'layouts/Table'
-import { Table, usePagination } from 'generic/Table'
-import { Teachers } from 'types/models'
+import { Table, usePagination, useSort } from 'generic/Table'
 
 const TeachersModule: React.FC = () => {
   const { t } = useTranslation()
   const { limit, offset, selectedPage, selectPage } = usePagination()
+  const [_sort, _order, changeSort] = useSort('id')
 
-  const [data, setData] = useState<Teachers | undefined>()
-  const [teachers, setTeachers] = useState<any>()
-  const [loading, setLoading] = useState<boolean>(false)
+  const dispatch = useAppDispatch()
+  const { teachers, loading } = useAppSelector((state) => state.teachersSlice)
 
   useEffect(() => {
-    setLoading(true)
-    getTeachers()
-      .then((response) => setData(response))
-      .finally(() => setLoading(false))
-
-    getTrueTeachers()
-      .then((response) => {
-        console.log('response', response)
-        setTeachers(response)
-      })
-      .finally(() => setLoading(false))
-  }, [])
+    dispatch(fetchTeachers({ _page: offset, _limit: limit, _sort, _order }))
+  }, [dispatch, _order, _sort, limit, offset])
 
   const { Columns, Header, Body } = Table
 
@@ -35,25 +24,24 @@ const TeachersModule: React.FC = () => {
       <span>{t('Teachers')}</span>
 
       <TableLayout
-        countPages={data && data.count / limit}
-        rowsCount={data?.count}
+        rowsCount={1}
         selectedPage={selectedPage}
         selectPage={selectPage}
         loading={loading}
       >
-        <Table>
+        <Table sortedBy={_sort} orderType={_order} changeSort={changeSort}>
           <Columns>
-            <Columns.Col widthPercent={10} minWidth="10rem" />
+            <Columns.Col widthPercent={10} minWidth="5rem" />
             <Columns.Col widthPercent={45} minWidth="10rem" />
             <Columns.Col widthPercent={45} minWidth="10rem" />
           </Columns>
           <Header>
-            <Header.Cell>{t('id')}</Header.Cell>
-            <Header.Cell>{t('FullName')}</Header.Cell>
+            <Header.Cell fieldName={'id'}>{t('id')}</Header.Cell>
+            <Header.Cell fieldName={'FullName'}>{t('FullName')}</Header.Cell>
             <Header.Cell>{t('Subjects')}</Header.Cell>
           </Header>
           <Body>
-            {data?.rows.map((item) => (
+            {teachers?.map((item) => (
               <Body.Row key={item.id}>
                 <Body.Cell>{item.id}</Body.Cell>
                 <Body.Cell>{item.FullName}</Body.Cell>

@@ -68,14 +68,15 @@ export const IconWrapper = styled.div<TableHeaderStyle>`
   }
 
   :first-of-type {
-    margin: 0 0 0.15rem 0.5rem;
+    margin-bottom: 2px;
+    align-self: flex-start;
     > img {
       transform: rotate(-90deg);
     }
   }
 
   :last-of-type {
-    align-self: flex-start;
+    // align-self: flex-start;
     > img {
       transform: rotate(90deg);
     }

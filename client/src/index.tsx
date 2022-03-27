@@ -7,7 +7,7 @@ import { Provider } from 'react-redux'
 
 import 'styles/master.css'
 import App from './App'
-import { setupStore } from './redux/root'
+import { setupStore } from './store/root'
 
 const store = setupStore()
 

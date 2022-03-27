@@ -1,4 +1,6 @@
-import { Params } from './types'
+export type Params = {
+  [key: string]: string | number | undefined | null
+}
 
 export const getUrlParams = (params: Params = {}): string => {
   const urlParams = new URLSearchParams()

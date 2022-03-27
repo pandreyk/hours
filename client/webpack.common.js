@@ -38,7 +38,7 @@ module.exports = function (env, argv) {
         modules: path.resolve(__dirname, 'src/modules'),
         types: path.resolve(__dirname, 'src/types'),
         mocks: path.resolve(__dirname, 'src/mocks'),
-        reduxroot: path.resolve(__dirname, 'src/redux'),
+        store: path.resolve(__dirname, 'src/store'),
       },
     },
     module: {

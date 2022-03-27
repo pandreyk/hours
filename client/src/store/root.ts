@@ -1,9 +1,11 @@
 import { combineReducers, configureStore } from '@reduxjs/toolkit'
 import { TypedUseSelectorHook, useDispatch, useSelector } from 'react-redux'
-import teachersSlice from './teachers'
+import classesSlice from './slices/classes'
+import teachersSlice from './slices/teachers'
 
 const rootReducer = combineReducers({
   teachersSlice,
+  classesSlice,
 })
 
 export const setupStore = () => {

@@ -1,21 +1,23 @@
 import { createSlice, createAsyncThunk, PayloadAction } from '@reduxjs/toolkit'
-import { getTeachers } from 'services/teachers'
-import { Params } from 'services/types'
+import { connector } from 'services/connector'
+import { getUrlParams, Params } from 'services/getUrlParams'
 import { Teacher } from 'types/models'
 
 export const fetchTeachers = createAsyncThunk(
   'teachers/fetchData',
   async function (params: Params, { rejectWithValue }) {
     try {
-      const response = await getTeachers(params)
+      const response = await connector.get<Teacher[]>(
+        `teachers?${getUrlParams(params)}`,
+      )
 
       if (!response.ok) {
-        throw new Error('server error')
+        throw new Error()
       }
 
       return response.data
     } catch (error) {
-      return rejectWithValue(error)
+      return rejectWithValue('server error')
     }
   },
 )
@@ -23,13 +25,13 @@ export const fetchTeachers = createAsyncThunk(
 interface TeachersState {
   teachers: Teacher[]
   loading: boolean
-  error: { message: string }
+  error: string
 }
 
 const initialState: TeachersState = {
   teachers: [],
   loading: false,
-  error: { message: '' },
+  error: '',
 }
 
 const teachersSlice = createSlice({
@@ -39,7 +41,7 @@ const teachersSlice = createSlice({
   extraReducers: {
     [fetchTeachers.pending.type]: (state) => {
       state.loading = true
-      state.error = { message: '' }
+      state.error = ''
     },
     [fetchTeachers.fulfilled.type]: (
       state,
@@ -48,7 +50,7 @@ const teachersSlice = createSlice({
       state.loading = false
       state.teachers = action.payload
     },
-    [fetchTeachers.rejected.type]: (state, action) => {
+    [fetchTeachers.rejected.type]: (state, action: PayloadAction<string>) => {
       state.loading = false
       state.error = action.payload
     },

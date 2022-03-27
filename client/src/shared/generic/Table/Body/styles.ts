@@ -19,7 +19,7 @@ export const Row = styled.tr<TableBodyStyle>`
 export const Cell = styled.td<TableBodyStyle>`
   padding: 0.7rem 1rem;
   position: relative;
-  border-left: solid 1px ${colors.primary};
+  /* border-left: solid 1px ${colors.primary}; */
   border-right: solid 1px ${colors.primary};
   outline: none;
   white-space: nowrap;
@@ -30,7 +30,7 @@ export const Cell = styled.td<TableBodyStyle>`
   line-height: 1.5rem;
   font-weight: lighter;
 
-  :first-of-type,
+  /* :first-of-type, */
   :last-of-type {
     border: none;
   }

@@ -1,7 +1,7 @@
 import React, { useEffect } from 'react'
 import { useTranslation } from 'react-i18next'
-import { useAppDispatch, useAppSelector } from 'reduxroot/root'
-import { fetchTeachers } from 'reduxroot/teachers'
+import { useAppDispatch, useAppSelector } from 'store/root'
+import { fetchTeachers } from 'store/slices/teachers'
 import TableLayout from 'layouts/Table'
 import { Table, usePagination, useSort } from 'generic/Table'
 

@@ -9,22 +9,41 @@ const Navbar: React.FC = () => {
   const { t } = useTranslation()
   const { path } = useRouteMatch()
 
-  const { home, assignment, teachers } = AdminRoutesList
+  const { home, assignment, teachers, classes, lessons, pupils, subjects } =
+    AdminRoutesList
+
+  const startPathEqualUrl = (url: string) => path.indexOf(url) === 0
 
   return (
     <Container>
       <Content>
-        <MenuItem isActive={path === home} path={home}>
+        <MenuItem isActive={startPathEqualUrl(home)} path={home}>
           {t('Home')}
         </MenuItem>
 
-        <MenuItem isActive={path === assignment} path={assignment}>
+        <MenuItem isActive={startPathEqualUrl(assignment)} path={assignment}>
           {t('Assignment')}
         </MenuItem>
 
-        <MenuItem isActive={path === teachers} path={teachers}>
+        <MenuItem isActive={startPathEqualUrl(teachers)} path={teachers}>
           {t('Teachers')}
         </MenuItem>
+
+        <MenuItem isActive={startPathEqualUrl(classes)} path={classes}>
+          {t('Classes')}
+        </MenuItem>
+
+        {/* <MenuItem isActive={path === lessons} path={lessons}>
+          {t('Lessons')}
+        </MenuItem>
+
+        <MenuItem isActive={path === pupils} path={pupils}>
+          {t('Pupils')}
+        </MenuItem>
+
+        <MenuItem isActive={path === subjects} path={subjects}>
+          {t('Subjects')}
+        </MenuItem> */}
       </Content>
     </Container>
   )

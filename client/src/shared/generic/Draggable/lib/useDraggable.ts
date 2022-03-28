@@ -17,7 +17,7 @@ export const useDraggable = ({
   onHover,
   onHoverOut,
 }: Config) => {
-  const [viewport, setViewport] = useState<any>(null) //тут не знаю какой тип, уродский тс
+  const [viewport, setViewport] = useState<HTMLDivElement | null>(null)
 
   useEffect(() => {
     if (viewport) {

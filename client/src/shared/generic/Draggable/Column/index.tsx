@@ -1,15 +1,17 @@
 import React, { useEffect } from 'react'
 import { Container } from './styles'
 
-interface IDraggableColumn {
+interface DraggableColumn {
   dragHeight: number
   dropId: string
+  width?: string
 }
 
-export const Column: React.FC<IDraggableColumn> = ({
+export const Column: React.FC<DraggableColumn> = ({
   children,
   dropId,
   dragHeight,
+  width,
   ...rest
 }) => {
   useEffect(() => {
@@ -30,7 +32,7 @@ export const Column: React.FC<IDraggableColumn> = ({
   }, [])
 
   return (
-    <Container data-droppable-id={dropId}>
+    <Container data-droppable-id={dropId} style={{ width }}>
       {React.Children.map(children, (child: any) =>
         React.cloneElement(child, { dragHeight, ...rest }),
       )}

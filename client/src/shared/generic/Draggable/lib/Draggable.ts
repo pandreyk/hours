@@ -331,10 +331,6 @@ export class Draggable {
     this.onHoverOut(elem)
   }
 
-  cancelDrop = () => {
-    console.log('CancelDrop')
-  }
-
   static disableScrolling = () => {
     const x = window.scrollX
     const y = window.scrollY
@@ -344,7 +340,6 @@ export class Draggable {
   }
 
   static enableScrolling = () => {
-    // eslint-disable-next-line @typescript-eslint/no-empty-function
     window.onscroll = () => {}
   }
 }

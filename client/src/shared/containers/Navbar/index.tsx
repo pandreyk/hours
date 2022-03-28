@@ -9,8 +9,7 @@ const Navbar: React.FC = () => {
   const { t } = useTranslation()
   const { path } = useRouteMatch()
 
-  const { home, assignment, teachers, classes, lessons, pupils, subjects } =
-    AdminRoutesList
+  const { home, teachers, classes, lessons, pupils, subjects } = AdminRoutesList
 
   const startPathEqualUrl = (url: string) => path.indexOf(url) === 0
 
@@ -19,10 +18,6 @@ const Navbar: React.FC = () => {
       <Content>
         <MenuItem isActive={startPathEqualUrl(home)} path={home}>
           {t('Home')}
-        </MenuItem>
-
-        <MenuItem isActive={startPathEqualUrl(assignment)} path={assignment}>
-          {t('Assignment')}
         </MenuItem>
 
         <MenuItem isActive={startPathEqualUrl(teachers)} path={teachers}>

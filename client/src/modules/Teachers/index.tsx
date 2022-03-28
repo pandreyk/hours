@@ -4,6 +4,7 @@ import { useAppDispatch, useAppSelector } from 'store/root'
 import { fetchTeachers } from 'store/slices/teachers'
 import TableLayout from 'layouts/Table'
 import { Table, usePagination, useSort } from 'generic/Table'
+import { connector } from '../../services/connector'
 
 const TeachersModule: React.FC = () => {
   const { t } = useTranslation()
@@ -12,6 +13,22 @@ const TeachersModule: React.FC = () => {
 
   const dispatch = useAppDispatch()
   const { teachers, loading } = useAppSelector((state) => state.teachersSlice)
+
+  // useEffect(() => {
+  //   const payload = {
+  //     FullName: 'Pepega Olegovna',
+  //     Subjects: [
+  //       {
+  //         id: 1,
+  //         Name: 'Math',
+  //       },
+  //     ],
+  //   }
+
+  //   connector
+  //     .post<any, any>('teachers', payload)
+  //     .then((r) => console.log('r', r))
+  // }, [])
 
   useEffect(() => {
     dispatch(fetchTeachers({ _page: offset, _limit: limit, _sort, _order }))

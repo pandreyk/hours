@@ -1,5 +1,7 @@
 import { combineReducers, configureStore } from '@reduxjs/toolkit'
 import { TypedUseSelectorHook, useDispatch, useSelector } from 'react-redux'
+import createSagaMiddleware from 'redux-saga'
+import saga from './sagas/rootSaga'
 import classesSlice from './slices/classes'
 import teachersSlice from './slices/teachers'
 
@@ -8,11 +10,21 @@ const rootReducer = combineReducers({
   classesSlice,
 })
 
+const sagaMiddleware = createSagaMiddleware()
+
 export const setupStore = () => {
-  return configureStore({
+  const store = configureStore({
     reducer: rootReducer,
-    middleware: (getDefaultMiddleware) => getDefaultMiddleware(),
+    middleware: (getDefaultMiddleware) => [
+      ...getDefaultMiddleware({ thunk: false }),
+      sagaMiddleware,
+    ],
+    // middleware: (getDefaultMiddleware) => getDefaultMiddleware(),
   })
+
+  sagaMiddleware.run(saga)
+
+  return store
 }
 
 export type RootState = ReturnType<typeof rootReducer>

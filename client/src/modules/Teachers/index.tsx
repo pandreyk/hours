@@ -40,6 +40,10 @@ const TeachersModule: React.FC = () => {
     <>
       <span>{t('Teachers')}</span>
 
+      {/* <button onClick={() => dispatch(fetchTeachersStart())}>
+        pipu pipu chek
+      </button> */}
+
       <TableLayout
         rowsCount={1}
         selectedPage={selectedPage}
